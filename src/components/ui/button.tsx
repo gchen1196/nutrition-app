@@ -16,19 +16,19 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 // Variant styles
 const variantStyles = {
   primary: css<{ theme: Theme }>`
-    background-color: ${({ theme }) => theme.colors.rausch};
+    background-color: ${({ theme }) => theme.colors.primary};
     color: ${({ theme }) => theme.colors.white};
     box-shadow: ${({ theme }) => theme.shadows.sm};
     &:hover {
-      background-color: ${({ theme }) => theme.colors.error};
+      background-color: ${({ theme }) => theme.colors.primary}dd;
     }
   `,
   secondary: css<{ theme: Theme }>`
-    background-color: ${({ theme }) => theme.colors.babu};
+    background-color: ${({ theme }) => theme.colors.secondary};
     color: ${({ theme }) => theme.colors.white};
     box-shadow: ${({ theme }) => theme.shadows.sm};
     &:hover {
-      opacity: 0.9;
+      background-color: ${({ theme }) => theme.colors.secondary}dd;
     }
   `,
   destructive: css<{ theme: Theme }>`
@@ -36,7 +36,7 @@ const variantStyles = {
     color: ${({ theme }) => theme.colors.white};
     box-shadow: ${({ theme }) => theme.shadows.sm};
     &:hover {
-      opacity: 0.9;
+      background-color: ${({ theme }) => theme.colors.error}dd;
     }
   `,
   outline: css<{ theme: Theme }>`
@@ -45,23 +45,23 @@ const variantStyles = {
     color: ${({ theme }) => theme.colors.gray700};
     box-shadow: ${({ theme }) => theme.shadows.sm};
     &:hover {
-      background-color: ${({ theme }) => theme.colors.gray100};
-      color: ${({ theme }) => theme.colors.gray900};
+      border-color: ${({ theme }) => theme.colors.primary};
+      color: ${({ theme }) => theme.colors.primary};
     }
   `,
   ghost: css<{ theme: Theme }>`
     color: ${({ theme }) => theme.colors.gray700};
     &:hover {
       background-color: ${({ theme }) => theme.colors.gray100};
-      color: ${({ theme }) => theme.colors.gray900};
+      color: ${({ theme }) => theme.colors.primary};
     }
   `,
   link: css<{ theme: Theme }>`
-    color: ${({ theme }) => theme.colors.rausch};
+    color: ${({ theme }) => theme.colors.primary};
     text-decoration-line: underline;
     text-underline-offset: 4px;
     &:hover {
-      color: ${({ theme }) => theme.colors.error};
+      color: ${({ theme }) => theme.colors.secondary};
     }
   `,
 };
@@ -119,7 +119,7 @@ const StyledButton = styled.button<ButtonProps & { theme: Theme }>`
 
   &:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.rausch}40;
+    box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.primary}40;
   }
 
   &:disabled {

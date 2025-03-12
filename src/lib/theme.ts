@@ -6,31 +6,29 @@
 // Base colors
 const colors = {
   // Primary palette
-  rausch: "#FF5A5F", // Airbnb's signature coral/pink
-  babu: "#00A699", // Teal
-  arches: "#FC642D", // Orange
-  hof: "#484848", // Charcoal
-  foggy: "#767676", // Gray
+  primary: "#81D8D0", // Tiffany Blue
+  secondary: "#5F6C7B", // Slate blue-gray
+  tertiary: "#B8C5D6", // Light blue-gray
 
   // Neutrals
   white: "#FFFFFF",
-  gray50: "#F8F8F8",
-  gray100: "#F5F5F5",
-  gray200: "#EBEBEB",
-  gray300: "#DDDDDD",
-  gray400: "#CCCCCC",
-  gray500: "#AAAAAA",
-  gray600: "#767676",
-  gray700: "#484848",
-  gray800: "#333333",
-  gray900: "#222222",
+  gray50: "#F9FAFB",
+  gray100: "#F3F4F6",
+  gray200: "#E5E7EB",
+  gray300: "#D1D5DB",
+  gray400: "#9CA3AF",
+  gray500: "#6B7280",
+  gray600: "#4B5563",
+  gray700: "#374151",
+  gray800: "#1F2937",
+  gray900: "#111827",
   black: "#000000",
 
   // Functional colors
-  success: "#008A05",
-  error: "#FF5A5F",
-  warning: "#FFB400",
-  info: "#428BFF",
+  success: "#10B981", // Emerald
+  error: "#EF4444", // Red
+  warning: "#F59E0B", // Amber
+  info: "#3B82F6", // Blue
 };
 
 // Typography
