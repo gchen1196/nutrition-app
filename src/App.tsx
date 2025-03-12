@@ -1,5 +1,6 @@
 import { useState } from "react";
 import WeeklyCheckin from "@/components/WeeklyCheckin";
+import MacroDashboard from "@/components/MacroDashboard";
 import Modal from "@/components/ui/modal";
 import { Button } from "@/components/ui/button";
 import styled from "styled-components";
@@ -72,8 +73,51 @@ const ButtonWrapper = styled.div`
   margin-top: ${({ theme }) => theme.spacing[4]};
 `;
 
+const TabContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: ${({ theme }) => theme.spacing[6]};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.gray200};
+`;
+
+const Tab = styled.button<{ active: boolean }>`
+  padding: ${({ theme }) => theme.spacing[3]} ${({ theme }) => theme.spacing[6]};
+  background: none;
+  border: none;
+  border-bottom: 3px solid ${({ theme, active }) => (active ? theme.colors.primary : "transparent")};
+  color: ${({ theme, active }) => (active ? theme.colors.primary : theme.colors.gray600)};
+  font-weight: ${({ theme, active }) =>
+    active ? theme.typography.fontWeight.semibold : theme.typography.fontWeight.medium};
+  font-size: ${({ theme }) => theme.typography.fontSize.lg};
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: ${({ theme, active }) => (active ? theme.colors.primary : theme.colors.gray800)};
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    padding: ${({ theme }) => theme.spacing[2]} ${({ theme }) => theme.spacing[4]};
+    font-size: ${({ theme }) => theme.typography.fontSize.md};
+  }
+`;
+
+const ActionButton = styled(Button)`
+  position: fixed;
+  bottom: ${({ theme }) => theme.spacing[6]};
+  right: ${({ theme }) => theme.spacing[6]};
+  z-index: 10;
+  box-shadow: ${({ theme }) => theme.shadows.lg};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    bottom: ${({ theme }) => theme.spacing[4]};
+    right: ${({ theme }) => theme.spacing[4]};
+  }
+`;
+
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState<"dashboard" | "history">("dashboard");
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -85,16 +129,28 @@ function App() {
         Track your nutrition progress and stay accountable with weekly check-ins
       </Subheading>
 
-      <Card>
-        <CardTitle>Weekly Check-in</CardTitle>
-        <CardText>
-          Record your weekly progress including weight, adherence to your nutrition plan, energy
-          levels, sleep quality, stress levels, and strength trends.
-        </CardText>
-        <ButtonWrapper>
-          <Button onClick={openModal}>Start Weekly Check-in</Button>
-        </ButtonWrapper>
-      </Card>
+      <TabContainer>
+        <Tab active={activeTab === "dashboard"} onClick={() => setActiveTab("dashboard")}>
+          Macro Dashboard
+        </Tab>
+        <Tab active={activeTab === "history"} onClick={() => setActiveTab("history")}>
+          History
+        </Tab>
+      </TabContainer>
+
+      {activeTab === "dashboard" && <MacroDashboard />}
+
+      {activeTab === "history" && (
+        <Card>
+          <CardTitle>Check-in History</CardTitle>
+          <CardText>View your past weekly check-ins and track your progress over time.</CardText>
+          <ButtonWrapper>
+            <Button variant="outline">View All Check-ins</Button>
+          </ButtonWrapper>
+        </Card>
+      )}
+
+      <ActionButton onClick={openModal}>New Check-in</ActionButton>
 
       <Modal isOpen={isModalOpen} onClose={closeModal} title="Weekly Check-in">
         <WeeklyCheckin />

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Button } from "@/components/ui/button";
-import { truncate, flexCenter } from "@/lib/utils";
+import { flexCenter } from "@/lib/utils";
 
 // Types
 type StrengthTrend = "WEAKER" | "SAME" | "STRONGER";
